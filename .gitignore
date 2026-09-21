@@ -4,3 +4,4 @@ output/*
 .pixi/
 .ipynb_checkpoints/
 __pycache__/
+.vscode/

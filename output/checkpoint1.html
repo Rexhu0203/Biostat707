@@ -7817,6 +7817,42 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b7067035">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Configure Windows DLL lookup before importing scientific packages.</span>
+<span class="c1"># Keep this handle alive for the lifetime of the kernel.</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">'win32'</span><span class="p">:</span>
+    <span class="n">dll_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span> <span class="o">/</span> <span class="s1">'Library'</span> <span class="o">/</span> <span class="s1">'bin'</span>
+    <span class="k">if</span> <span class="n">dll_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+        <span class="n">dll_directory_handle</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">add_dll_directory</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dll_dir</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">dll_dir</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'PATH'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'PATH'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dll_dir</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'PATH'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
+<span class="n">DATA</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s1">'data'</span>
+<span class="n">SET_A</span> <span class="o">=</span> <span class="n">DATA</span> <span class="o">/</span> <span class="s1">'set-a'</span>
+<span class="n">OUTPUT</span> <span class="o">=</span> <span class="n">ROOT</span> <span class="o">/</span> <span class="s1">'output'</span>
+<span class="n">OUTPUT</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cf96d427">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7824,7 +7860,192 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Data-loading">Data loading<a class="anchor-link" href="#Data-loading">¶</a></h2>
+<h2 id="Data-loading">Data loading<a class="anchor-link" href="#Data-loading">¶</a></h2><p>Find the Set A patient text files in a stable order. Should have 4000.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d06a6932">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">patient_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">SET_A</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.txt'</span><span class="p">))</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">patient_files</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">4000</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Expected 4000 patient files in </span><span class="si">{</span><span class="n">SET_A</span><span class="si">}</span><span class="s1">, found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">patient_files</span><span class="p">)</span><span class="si">}</span><span class="s1">.'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">patient_files</span><span class="p">)</span><span class="si">}</span><span class="s1"> Set A patient files.'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Found 4000 Set A patient files.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b7aa1d94">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Inspect one raw file before combining the patients. Its rows are a skinny table of time, parameter, and value; the <code>RecordID</code> row is patient metadata.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f0f37588">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">example_file</span> <span class="o">=</span> <span class="n">patient_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">example</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">example_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Example file: </span><span class="si">{</span><span class="n">example_file</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">example</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Shape:'</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Columns:'</span><span class="p">,</span> <span class="n">example</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Unique Parameters:'</span><span class="p">,</span> <span class="n">example</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Parameter value counts:'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Example file: data\set-a\132539.txt
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Time</th>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>00:00</td>
+<td>RecordID</td>
+<td>132539.0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>00:00</td>
+<td>Age</td>
+<td>54.0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>00:00</td>
+<td>Gender</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>00:00</td>
+<td>Height</td>
+<td>-1.0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>00:00</td>
+<td>ICUType</td>
+<td>4.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Shape: (273, 3)
+Columns: ['Time', 'Parameter', 'Value']
+Unique Parameters: &lt;StringArray&gt;
+[  'RecordID',        'Age',     'Gender',     'Height',    'ICUType',
+     'Weight',        'GCS',         'HR',  'NIDiasABP',      'NIMAP',
+   'NISysABP',   'RespRate',       'Temp',      'Urine',        'HCT',
+        'BUN', 'Creatinine',    'Glucose',       'HCO3',         'Mg',
+  'Platelets',          'K',         'Na',        'WBC']
+Length: 24, dtype: str
+Parameter value counts:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Parameter
+RespRate      42
+Urine         38
+HR            37
+NIDiasABP     34
+NIMAP         34
+NISysABP      34
+Temp          14
+GCS           13
+HCT            3
+BUN            2
+Creatinine     2
+Glucose        2
+HCO3           2
+Mg             2
+Platelets      2
+K              2
+Na             2
+WBC            2
+RecordID       1
+Age            1
+Gender         1
+Height         1
+ICUType        1
+Weight         1
+Name: count, dtype: int64</pre>
+</div>
 </div>
 </div>
 </div>
@@ -7835,7 +8056,40 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Build-long-table">Build long table<a class="anchor-link" href="#Build-long-table">¶</a></h2>
+<h2 id="Build-long-table">Build long table<a class="anchor-link" href="#Build-long-table">¶</a></h2><p>Read each patient file and require exactly one internal <code>RecordID</code> that matches its filename. Remove that metadata row, add the verified ID to each clinical observation, and convert elapsed <code>HH:MM</code> to numeric hours while keeping the original <code>Time</code>. Keep raw <code>Value</code> entries, including <code>-1</code>, for later variable-specific missing-value decisions.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5a67fc6d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">patient_tables</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">patient_file</span> <span class="ow">in</span> <span class="n">patient_files</span><span class="p">:</span>
+    <span class="n">patient</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">patient_file</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'Value'</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
+    <span class="n">record_ids</span> <span class="o">=</span> <span class="n">patient</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">patient</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'RecordID'</span><span class="p">,</span> <span class="s1">'Value'</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">record_ids</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">record_ids</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">!=</span> <span class="n">patient_file</span><span class="o">.</span><span class="n">stem</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">'RecordID row does not match filename in </span><span class="si">{</span><span class="n">patient_file</span><span class="si">}</span><span class="s1">.'</span><span class="p">)</span>
+
+    <span class="n">clinical</span> <span class="o">=</span> <span class="n">patient</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">patient</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">clinical</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">clinical</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'raise'</span><span class="p">)</span>
+    <span class="n">clinical</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'RecordID'</span><span class="p">,</span> <span class="n">patient_file</span><span class="o">.</span><span class="n">stem</span><span class="p">)</span>
+    <span class="n">patient_tables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clinical</span><span class="p">)</span>
+
+<span class="n">set_a_long</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">patient_tables</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Time'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">'</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Some Time values are not in HH:MM format.'</span><span class="p">)</span>
+<span class="n">hours_minutes</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Time'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">hours_minutes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">59</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">'Some Time values have minutes outside 00–59.'</span><span class="p">)</span>
+<span class="n">set_a_long</span><span class="p">[</span><span class="s1">'hours_since_admission'</span><span class="p">]</span> <span class="o">=</span> <span class="n">hours_minutes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">hours_minutes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">60</span>
+<span class="n">set_a_long</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'set-a_long.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -7846,84 +8100,3864 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Data-sanity-checks">Data sanity checks<a class="anchor-link" href="#Data-sanity-checks">¶</a></h2>
+<h2 id="Data-sanity-checks">Data sanity checks<a class="anchor-link" href="#Data-sanity-checks">¶</a></h2><p>Check patient coverage, table size, elapsed time, duplicate observations, missing fields, and parameter coverage. Show rows from both ends of the combined table. Duplicate rows are reported for inspection; repeated source observations are kept.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c93fc877">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">'Unique RecordIDs:'</span><span class="p">,</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Shape:'</span><span class="p">,</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Hours since admission (min, max):'</span><span class="p">,</span>
+      <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'hours_since_admission'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+      <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'hours_since_admission'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Duplicated rows:'</span><span class="p">,</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Missing values in required fields:'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">set_a_long</span><span class="p">[[</span><span class="s1">'RecordID'</span><span class="p">,</span> <span class="s1">'Time'</span><span class="p">,</span> <span class="s1">'Parameter'</span><span class="p">,</span> <span class="s1">'Value'</span><span class="p">]]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Unique Parameters:'</span><span class="p">,</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'First rows:'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">set_a_long</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Last rows:'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">set_a_long</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ba2768c9">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Unique RecordIDs: 4000
+Shape: (1753980, 5)
+Hours since admission (min, max): 0.0 48.0
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Duplicated rows: 0
+Missing values in required fields:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>RecordID     0
+Time         0
+Parameter    0
+Value        0
+dtype: int64</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Unique Parameters: 41
+First rows:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>RecordID</th>
+<th>Time</th>
+<th>Parameter</th>
+<th>Value</th>
+<th>hours_since_admission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>132539</td>
+<td>00:00</td>
+<td>Age</td>
+<td>54.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>132539</td>
+<td>00:00</td>
+<td>Gender</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>132539</td>
+<td>00:00</td>
+<td>Height</td>
+<td>-1.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>132539</td>
+<td>00:00</td>
+<td>ICUType</td>
+<td>4.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>132539</td>
+<td>00:00</td>
+<td>Weight</td>
+<td>-1.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Last rows:
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>RecordID</th>
+<th>Time</th>
+<th>Parameter</th>
+<th>Value</th>
+<th>hours_since_admission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1753975</th>
+<td>142673</td>
+<td>47:36</td>
+<td>HR</td>
+<td>84.0</td>
+<td>47.6</td>
+</tr>
+<tr>
+<th>1753976</th>
+<td>142673</td>
+<td>47:36</td>
+<td>MAP</td>
+<td>86.0</td>
+<td>47.6</td>
+</tr>
+<tr>
+<th>1753977</th>
+<td>142673</td>
+<td>47:36</td>
+<td>SysABP</td>
+<td>129.0</td>
+<td>47.6</td>
+</tr>
+<tr>
+<th>1753978</th>
+<td>142673</td>
+<td>47:36</td>
+<td>Urine</td>
+<td>30.0</td>
+<td>47.6</td>
+</tr>
+<tr>
+<th>1753979</th>
+<td>142673</td>
+<td>47:36</td>
+<td>Weight</td>
+<td>87.3</td>
+<td>47.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3a29931">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Temporal-missingness">Temporal missingness<a class="anchor-link" href="#Temporal-missingness">¶</a></h2>
+<p>The combined long table contained 1,753,980 observations from all 4,000 ICU stays. After using the <code>RecordID</code> metadata field as the patient identifier and removing it from the longitudinal measurements, 41 unique clinical parameters remained. Recorded times ranged from 0 to 48 hours after ICU admission, with no missing identifiers or exact duplicate rows.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=796488bd">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=106bd143">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Build-wide-table">Build wide table<a class="anchor-link" href="#Build-wide-table">¶</a></h2>
+<p>Inspect raw distributions before cleaning. Counts below refer to observations, not patients. I preserve <code>Value</code> and replace only the measurement sentinel <code>-1</code> with <code>NaN</code> in <code>Value_clean</code>; the saved long CSV retains its original five-column schema. Quantiles describe the data and are not exclusion thresholds.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9d0cd08c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">raw_columns</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1753980</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4000</span>
+<span class="k">assert</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'hours_since_admission'</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">raw_group</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Parameter'</span><span class="p">)[</span><span class="s1">'Value'</span><span class="p">]</span>
+<span class="n">raw_summary</span> <span class="o">=</span> <span class="n">raw_group</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="s1">'count'</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="s1">'min'</span><span class="p">,</span> <span class="n">median</span><span class="o">=</span><span class="s1">'median'</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="s1">'mean'</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="s1">'max'</span><span class="p">)</span>
+<span class="n">raw_summary</span><span class="p">[</span><span class="s1">'n_minus1'</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">raw_summary</span><span class="p">[</span><span class="s1">'pct_minus1'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">raw_summary</span><span class="p">[</span><span class="s1">'n_minus1'</span><span class="p">]</span> <span class="o">/</span> <span class="n">raw_summary</span><span class="p">[</span><span class="s1">'count'</span><span class="p">]</span>
+<span class="n">raw_summary</span><span class="p">[</span><span class="s1">'p01'</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_group</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">raw_summary</span><span class="p">[</span><span class="s1">'p99'</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_group</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.99</span><span class="p">)</span>
+<span class="n">raw_summary</span> <span class="o">=</span> <span class="n">raw_summary</span><span class="p">[[</span><span class="s1">'count'</span><span class="p">,</span> <span class="s1">'n_minus1'</span><span class="p">,</span> <span class="s1">'pct_minus1'</span><span class="p">,</span> <span class="s1">'minimum'</span><span class="p">,</span> <span class="s1">'p01'</span><span class="p">,</span> <span class="s1">'median'</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">,</span> <span class="s1">'p99'</span><span class="p">,</span> <span class="s1">'maximum'</span><span class="p">]]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">raw_summary</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">raw_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'raw_parameter_summary.csv'</span><span class="p">)</span>
+<span class="n">negative</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Total negative observations:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">negative</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">negative</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Parameter'</span><span class="p">)[</span><span class="s1">'Value'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="s1">'size'</span><span class="p">,</span> <span class="n">unique_values</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">unique</span><span class="p">())))</span>
+<span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Value_clean'</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Encoded missing measurements:'</span><span class="p">,</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">clean_summary</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Parameter'</span><span class="p">)[</span><span class="s1">'Value_clean'</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">clean_summary</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2a9fdd73">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>count</th>
+<th>n_minus1</th>
+<th>pct_minus1</th>
+<th>minimum</th>
+<th>p01</th>
+<th>median</th>
+<th>mean</th>
+<th>p99</th>
+<th>maximum</th>
+</tr>
+<tr>
+<th>Parameter</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>ALP</th>
+<td>3092</td>
+<td>0</td>
+<td>0.000</td>
+<td>12.00</td>
+<td>28.00</td>
+<td>82.00</td>
+<td>116.773</td>
+<td>703.450</td>
+<td>2205.00</td>
+</tr>
+<tr>
+<th>ALT</th>
+<td>3177</td>
+<td>0</td>
+<td>0.000</td>
+<td>1.00</td>
+<td>6.00</td>
+<td>43.00</td>
+<td>394.475</td>
+<td>7151.280</td>
+<td>11470.00</td>
+</tr>
+<tr>
+<th>AST</th>
+<td>3182</td>
+<td>0</td>
+<td>0.000</td>
+<td>4.00</td>
+<td>11.00</td>
+<td>64.00</td>
+<td>506.284</td>
+<td>8199.760</td>
+<td>18430.00</td>
+</tr>
+<tr>
+<th>Age</th>
+<td>4000</td>
+<td>0</td>
+<td>0.000</td>
+<td>15.00</td>
+<td>20.00</td>
+<td>67.00</td>
+<td>64.248</td>
+<td>90.000</td>
+<td>90.00</td>
+</tr>
+<tr>
+<th>Albumin</th>
+<td>2356</td>
+<td>0</td>
+<td>0.000</td>
+<td>1.00</td>
+<td>1.50</td>
+<td>2.90</td>
+<td>2.922</td>
+<td>4.345</td>
+<td>5.30</td>
+</tr>
+<tr>
+<th>BUN</th>
+<td>13916</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>4.00</td>
+<td>20.00</td>
+<td>27.417</td>
+<td>121.000</td>
+<td>197.00</td>
+</tr>
+<tr>
+<th>Bilirubin</th>
+<td>3191</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.10</td>
+<td>0.10</td>
+<td>0.90</td>
+<td>2.909</td>
+<td>30.710</td>
+<td>47.70</td>
+</tr>
+<tr>
+<th>Cholesterol</th>
+<td>315</td>
+<td>0</td>
+<td>0.000</td>
+<td>28.00</td>
+<td>68.70</td>
+<td>152.00</td>
+<td>156.517</td>
+<td>295.880</td>
+<td>330.00</td>
+</tr>
+<tr>
+<th>Creatinine</th>
+<td>13983</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.10</td>
+<td>0.30</td>
+<td>1.00</td>
+<td>1.505</td>
+<td>8.900</td>
+<td>22.10</td>
+</tr>
+<tr>
+<th>DiasABP</th>
+<td>145567</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>33.00</td>
+<td>58.00</td>
+<td>59.291</td>
+<td>96.000</td>
+<td>268.00</td>
+</tr>
+<tr>
+<th>FiO2</th>
+<td>32390</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.21</td>
+<td>0.30</td>
+<td>0.50</td>
+<td>0.545</td>
+<td>1.000</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>GCS</th>
+<td>61563</td>
+<td>0</td>
+<td>0.000</td>
+<td>3.00</td>
+<td>3.00</td>
+<td>13.00</td>
+<td>11.399</td>
+<td>15.000</td>
+<td>15.00</td>
+</tr>
+<tr>
+<th>Gender</th>
+<td>4000</td>
+<td>3</td>
+<td>0.075</td>
+<td>-1.00</td>
+<td>0.00</td>
+<td>1.00</td>
+<td>0.561</td>
+<td>1.000</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>Glucose</th>
+<td>13021</td>
+<td>0</td>
+<td>0.000</td>
+<td>10.00</td>
+<td>59.00</td>
+<td>127.00</td>
+<td>141.510</td>
+<td>391.000</td>
+<td>1143.00</td>
+</tr>
+<tr>
+<th>HCO3</th>
+<td>13613</td>
+<td>0</td>
+<td>0.000</td>
+<td>5.00</td>
+<td>11.00</td>
+<td>23.00</td>
+<td>23.116</td>
+<td>35.000</td>
+<td>50.00</td>
+</tr>
+<tr>
+<th>HCT</th>
+<td>18271</td>
+<td>0</td>
+<td>0.000</td>
+<td>9.00</td>
+<td>20.10</td>
+<td>30.30</td>
+<td>30.679</td>
+<td>44.400</td>
+<td>61.80</td>
+</tr>
+<tr>
+<th>HR</th>
+<td>228538</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>51.00</td>
+<td>86.00</td>
+<td>87.517</td>
+<td>137.000</td>
+<td>300.00</td>
+</tr>
+<tr>
+<th>Height</th>
+<td>4000</td>
+<td>1894</td>
+<td>47.350</td>
+<td>-1.00</td>
+<td>-1.00</td>
+<td>152.40</td>
+<td>88.919</td>
+<td>190.500</td>
+<td>431.80</td>
+</tr>
+<tr>
+<th>ICUType</th>
+<td>4000</td>
+<td>0</td>
+<td>0.000</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>3.00</td>
+<td>2.760</td>
+<td>4.000</td>
+<td>4.00</td>
+</tr>
+<tr>
+<th>K</th>
+<td>14440</td>
+<td>0</td>
+<td>0.000</td>
+<td>1.80</td>
+<td>2.80</td>
+<td>4.10</td>
+<td>4.136</td>
+<td>6.300</td>
+<td>22.90</td>
+</tr>
+<tr>
+<th>Lactate</th>
+<td>8024</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.30</td>
+<td>0.70</td>
+<td>2.10</td>
+<td>2.925</td>
+<td>13.100</td>
+<td>29.30</td>
+</tr>
+<tr>
+<th>MAP</th>
+<td>145760</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>51.00</td>
+<td>77.00</td>
+<td>79.743</td>
+<td>128.000</td>
+<td>300.00</td>
+</tr>
+<tr>
+<th>MechVent</th>
+<td>31144</td>
+<td>0</td>
+<td>0.000</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.000</td>
+<td>1.000</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>Mg</th>
+<td>13590</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.60</td>
+<td>1.20</td>
+<td>2.00</td>
+<td>2.028</td>
+<td>3.200</td>
+<td>9.90</td>
+</tr>
+<tr>
+<th>NIDiasABP</th>
+<td>98210</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>26.00</td>
+<td>56.00</td>
+<td>57.954</td>
+<td>99.000</td>
+<td>201.00</td>
+</tr>
+<tr>
+<th>NIMAP</th>
+<td>96871</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>46.00</td>
+<td>75.00</td>
+<td>76.780</td>
+<td>119.000</td>
+<td>209.00</td>
+</tr>
+<tr>
+<th>NISysABP</th>
+<td>98331</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>74.00</td>
+<td>116.00</td>
+<td>118.594</td>
+<td>181.000</td>
+<td>296.00</td>
+</tr>
+<tr>
+<th>Na</th>
+<td>13570</td>
+<td>0</td>
+<td>0.000</td>
+<td>98.00</td>
+<td>126.00</td>
+<td>139.00</td>
+<td>139.076</td>
+<td>153.310</td>
+<td>177.00</td>
+</tr>
+<tr>
+<th>PaCO2</th>
+<td>23293</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.30</td>
+<td>23.00</td>
+<td>39.00</td>
+<td>40.475</td>
+<td>73.000</td>
+<td>100.00</td>
+</tr>
+<tr>
+<th>PaO2</th>
+<td>23268</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>53.00</td>
+<td>121.00</td>
+<td>150.415</td>
+<td>450.000</td>
+<td>500.00</td>
+</tr>
+<tr>
+<th>Platelets</th>
+<td>14104</td>
+<td>0</td>
+<td>0.000</td>
+<td>6.00</td>
+<td>29.00</td>
+<td>172.00</td>
+<td>190.816</td>
+<td>553.970</td>
+<td>1047.00</td>
+</tr>
+<tr>
+<th>RespRate</th>
+<td>55051</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>9.00</td>
+<td>19.00</td>
+<td>19.724</td>
+<td>36.000</td>
+<td>98.00</td>
+</tr>
+<tr>
+<th>SaO2</th>
+<td>8185</td>
+<td>0</td>
+<td>0.000</td>
+<td>26.00</td>
+<td>85.00</td>
+<td>97.00</td>
+<td>96.637</td>
+<td>100.000</td>
+<td>100.00</td>
+</tr>
+<tr>
+<th>SysABP</th>
+<td>145650</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>70.00</td>
+<td>116.00</td>
+<td>118.698</td>
+<td>185.000</td>
+<td>295.00</td>
+</tr>
+<tr>
+<th>Temp</th>
+<td>86405</td>
+<td>0</td>
+<td>0.000</td>
+<td>-17.80</td>
+<td>34.70</td>
+<td>37.10</td>
+<td>37.008</td>
+<td>39.100</td>
+<td>42.10</td>
+</tr>
+<tr>
+<th>TroponinI</th>
+<td>435</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.30</td>
+<td>0.30</td>
+<td>2.60</td>
+<td>7.151</td>
+<td>43.928</td>
+<td>49.20</td>
+</tr>
+<tr>
+<th>TroponinT</th>
+<td>2126</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.20</td>
+<td>1.198</td>
+<td>13.982</td>
+<td>24.91</td>
+</tr>
+<tr>
+<th>Urine</th>
+<td>136918</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>70.00</td>
+<td>120.799</td>
+<td>725.000</td>
+<td>11000.00</td>
+</tr>
+<tr>
+<th>WBC</th>
+<td>12910</td>
+<td>0</td>
+<td>0.000</td>
+<td>0.10</td>
+<td>1.60</td>
+<td>11.40</td>
+<td>12.670</td>
+<td>35.600</td>
+<td>187.50</td>
+</tr>
+<tr>
+<th>Weight</th>
+<td>129165</td>
+<td>326</td>
+<td>0.252</td>
+<td>-1.00</td>
+<td>40.00</td>
+<td>80.60</td>
+<td>83.387</td>
+<td>162.200</td>
+<td>300.00</td>
+</tr>
+<tr>
+<th>pH</th>
+<td>24355</td>
+<td>0</td>
+<td>0.000</td>
+<td>1.00</td>
+<td>7.14</td>
+<td>7.38</td>
+<td>7.489</td>
+<td>7.530</td>
+<td>735.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Total negative observations: 2247
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>count</th>
+<th>unique_values</th>
+</tr>
+<tr>
+<th>Parameter</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Gender</th>
+<td>3</td>
+<td>[-1.0]</td>
+</tr>
+<tr>
+<th>Height</th>
+<td>1894</td>
+<td>[-1.0]</td>
+</tr>
+<tr>
+<th>Temp</th>
+<td>24</td>
+<td>[-17.8, -12.5]</td>
+</tr>
+<tr>
+<th>Weight</th>
+<td>326</td>
+<td>[-1.0]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Encoded missing measurements: 2223
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>count</th>
+<th>mean</th>
+<th>std</th>
+<th>min</th>
+<th>1%</th>
+<th>50%</th>
+<th>99%</th>
+<th>max</th>
+</tr>
+<tr>
+<th>Parameter</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>ALP</th>
+<td>3092.0</td>
+<td>116.773</td>
+<td>133.905</td>
+<td>12.00</td>
+<td>28.00</td>
+<td>82.00</td>
+<td>703.450</td>
+<td>2205.00</td>
+</tr>
+<tr>
+<th>ALT</th>
+<td>3177.0</td>
+<td>394.475</td>
+<td>1200.169</td>
+<td>1.00</td>
+<td>6.00</td>
+<td>43.00</td>
+<td>7151.280</td>
+<td>11470.00</td>
+</tr>
+<tr>
+<th>AST</th>
+<td>3182.0</td>
+<td>506.284</td>
+<td>1516.430</td>
+<td>4.00</td>
+<td>11.00</td>
+<td>64.00</td>
+<td>8199.760</td>
+<td>18430.00</td>
+</tr>
+<tr>
+<th>Age</th>
+<td>4000.0</td>
+<td>64.248</td>
+<td>17.561</td>
+<td>15.00</td>
+<td>20.00</td>
+<td>67.00</td>
+<td>90.000</td>
+<td>90.00</td>
+</tr>
+<tr>
+<th>Albumin</th>
+<td>2356.0</td>
+<td>2.922</td>
+<td>0.652</td>
+<td>1.00</td>
+<td>1.50</td>
+<td>2.90</td>
+<td>4.345</td>
+<td>5.30</td>
+</tr>
+<tr>
+<th>BUN</th>
+<td>13916.0</td>
+<td>27.417</td>
+<td>23.394</td>
+<td>0.00</td>
+<td>4.00</td>
+<td>20.00</td>
+<td>121.000</td>
+<td>197.00</td>
+</tr>
+<tr>
+<th>Bilirubin</th>
+<td>3191.0</td>
+<td>2.909</td>
+<td>5.905</td>
+<td>0.10</td>
+<td>0.10</td>
+<td>0.90</td>
+<td>30.710</td>
+<td>47.70</td>
+</tr>
+<tr>
+<th>Cholesterol</th>
+<td>315.0</td>
+<td>156.517</td>
+<td>46.068</td>
+<td>28.00</td>
+<td>68.70</td>
+<td>152.00</td>
+<td>295.880</td>
+<td>330.00</td>
+</tr>
+<tr>
+<th>Creatinine</th>
+<td>13983.0</td>
+<td>1.505</td>
+<td>1.636</td>
+<td>0.10</td>
+<td>0.30</td>
+<td>1.00</td>
+<td>8.900</td>
+<td>22.10</td>
+</tr>
+<tr>
+<th>DiasABP</th>
+<td>145567.0</td>
+<td>59.291</td>
+<td>13.318</td>
+<td>0.00</td>
+<td>33.00</td>
+<td>58.00</td>
+<td>96.000</td>
+<td>268.00</td>
+</tr>
+<tr>
+<th>FiO2</th>
+<td>32390.0</td>
+<td>0.545</td>
+<td>0.190</td>
+<td>0.21</td>
+<td>0.30</td>
+<td>0.50</td>
+<td>1.000</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>GCS</th>
+<td>61563.0</td>
+<td>11.399</td>
+<td>3.973</td>
+<td>3.00</td>
+<td>3.00</td>
+<td>13.00</td>
+<td>15.000</td>
+<td>15.00</td>
+</tr>
+<tr>
+<th>Gender</th>
+<td>3997.0</td>
+<td>0.562</td>
+<td>0.496</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>1.00</td>
+<td>1.000</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>Glucose</th>
+<td>13021.0</td>
+<td>141.510</td>
+<td>67.698</td>
+<td>10.00</td>
+<td>59.00</td>
+<td>127.00</td>
+<td>391.000</td>
+<td>1143.00</td>
+</tr>
+<tr>
+<th>HCO3</th>
+<td>13613.0</td>
+<td>23.116</td>
+<td>4.710</td>
+<td>5.00</td>
+<td>11.00</td>
+<td>23.00</td>
+<td>35.000</td>
+<td>50.00</td>
+</tr>
+<tr>
+<th>HCT</th>
+<td>18271.0</td>
+<td>30.679</td>
+<td>5.013</td>
+<td>9.00</td>
+<td>20.10</td>
+<td>30.30</td>
+<td>44.400</td>
+<td>61.80</td>
+</tr>
+<tr>
+<th>HR</th>
+<td>228538.0</td>
+<td>87.517</td>
+<td>18.405</td>
+<td>0.00</td>
+<td>51.00</td>
+<td>86.00</td>
+<td>137.000</td>
+<td>300.00</td>
+</tr>
+<tr>
+<th>Height</th>
+<td>2106.0</td>
+<td>169.787</td>
+<td>20.175</td>
+<td>1.80</td>
+<td>142.20</td>
+<td>170.20</td>
+<td>194.235</td>
+<td>431.80</td>
+</tr>
+<tr>
+<th>ICUType</th>
+<td>4000.0</td>
+<td>2.760</td>
+<td>1.003</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>3.00</td>
+<td>4.000</td>
+<td>4.00</td>
+</tr>
+<tr>
+<th>K</th>
+<td>14440.0</td>
+<td>4.136</td>
+<td>0.707</td>
+<td>1.80</td>
+<td>2.80</td>
+<td>4.10</td>
+<td>6.300</td>
+<td>22.90</td>
+</tr>
+<tr>
+<th>Lactate</th>
+<td>8024.0</td>
+<td>2.925</td>
+<td>2.579</td>
+<td>0.30</td>
+<td>0.70</td>
+<td>2.10</td>
+<td>13.100</td>
+<td>29.30</td>
+</tr>
+<tr>
+<th>MAP</th>
+<td>145760.0</td>
+<td>79.743</td>
+<td>16.927</td>
+<td>0.00</td>
+<td>51.00</td>
+<td>77.00</td>
+<td>128.000</td>
+<td>300.00</td>
+</tr>
+<tr>
+<th>MechVent</th>
+<td>31144.0</td>
+<td>1.000</td>
+<td>0.000</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.000</td>
+<td>1.00</td>
+</tr>
+<tr>
+<th>Mg</th>
+<td>13590.0</td>
+<td>2.028</td>
+<td>0.422</td>
+<td>0.60</td>
+<td>1.20</td>
+<td>2.00</td>
+<td>3.200</td>
+<td>9.90</td>
+</tr>
+<tr>
+<th>NIDiasABP</th>
+<td>98210.0</td>
+<td>57.954</td>
+<td>15.548</td>
+<td>0.00</td>
+<td>26.00</td>
+<td>56.00</td>
+<td>99.000</td>
+<td>201.00</td>
+</tr>
+<tr>
+<th>NIMAP</th>
+<td>96871.0</td>
+<td>76.780</td>
+<td>15.636</td>
+<td>0.00</td>
+<td>46.00</td>
+<td>75.00</td>
+<td>119.000</td>
+<td>209.00</td>
+</tr>
+<tr>
+<th>NISysABP</th>
+<td>98331.0</td>
+<td>118.594</td>
+<td>23.260</td>
+<td>0.00</td>
+<td>74.00</td>
+<td>116.00</td>
+<td>181.000</td>
+<td>296.00</td>
+</tr>
+<tr>
+<th>Na</th>
+<td>13570.0</td>
+<td>139.076</td>
+<td>5.191</td>
+<td>98.00</td>
+<td>126.00</td>
+<td>139.00</td>
+<td>153.310</td>
+<td>177.00</td>
+</tr>
+<tr>
+<th>PaCO2</th>
+<td>23293.0</td>
+<td>40.475</td>
+<td>9.126</td>
+<td>0.30</td>
+<td>23.00</td>
+<td>39.00</td>
+<td>73.000</td>
+<td>100.00</td>
+</tr>
+<tr>
+<th>PaO2</th>
+<td>23268.0</td>
+<td>150.415</td>
+<td>89.301</td>
+<td>0.00</td>
+<td>53.00</td>
+<td>121.00</td>
+<td>450.000</td>
+<td>500.00</td>
+</tr>
+<tr>
+<th>Platelets</th>
+<td>14104.0</td>
+<td>190.816</td>
+<td>106.396</td>
+<td>6.00</td>
+<td>29.00</td>
+<td>172.00</td>
+<td>553.970</td>
+<td>1047.00</td>
+</tr>
+<tr>
+<th>RespRate</th>
+<td>55051.0</td>
+<td>19.724</td>
+<td>5.552</td>
+<td>0.00</td>
+<td>9.00</td>
+<td>19.00</td>
+<td>36.000</td>
+<td>98.00</td>
+</tr>
+<tr>
+<th>SaO2</th>
+<td>8185.0</td>
+<td>96.637</td>
+<td>3.400</td>
+<td>26.00</td>
+<td>85.00</td>
+<td>97.00</td>
+<td>100.000</td>
+<td>100.00</td>
+</tr>
+<tr>
+<th>SysABP</th>
+<td>145650.0</td>
+<td>118.698</td>
+<td>25.016</td>
+<td>0.00</td>
+<td>70.00</td>
+<td>116.00</td>
+<td>185.000</td>
+<td>295.00</td>
+</tr>
+<tr>
+<th>Temp</th>
+<td>86405.0</td>
+<td>37.008</td>
+<td>1.775</td>
+<td>-17.80</td>
+<td>34.70</td>
+<td>37.10</td>
+<td>39.100</td>
+<td>42.10</td>
+</tr>
+<tr>
+<th>TroponinI</th>
+<td>435.0</td>
+<td>7.151</td>
+<td>9.767</td>
+<td>0.30</td>
+<td>0.30</td>
+<td>2.60</td>
+<td>43.928</td>
+<td>49.20</td>
+</tr>
+<tr>
+<th>TroponinT</th>
+<td>2126.0</td>
+<td>1.198</td>
+<td>2.714</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.20</td>
+<td>13.982</td>
+<td>24.91</td>
+</tr>
+<tr>
+<th>Urine</th>
+<td>136918.0</td>
+<td>120.799</td>
+<td>184.727</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>70.00</td>
+<td>725.000</td>
+<td>11000.00</td>
+</tr>
+<tr>
+<th>WBC</th>
+<td>12910.0</td>
+<td>12.670</td>
+<td>7.642</td>
+<td>0.10</td>
+<td>1.60</td>
+<td>11.40</td>
+<td>35.600</td>
+<td>187.50</td>
+</tr>
+<tr>
+<th>Weight</th>
+<td>128839.0</td>
+<td>83.600</td>
+<td>24.717</td>
+<td>0.00</td>
+<td>42.40</td>
+<td>80.70</td>
+<td>162.200</td>
+<td>300.00</td>
+</tr>
+<tr>
+<th>pH</th>
+<td>24355.0</td>
+<td>7.489</td>
+<td>8.244</td>
+<td>1.00</td>
+<td>7.14</td>
+<td>7.38</td>
+<td>7.530</td>
+<td>735.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5675644d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">descriptor_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">,</span> <span class="s1">'ICUType'</span><span class="p">,</span> <span class="s1">'Weight'</span><span class="p">,</span> <span class="s1">'MechVent'</span><span class="p">]</span>
+<span class="n">descriptors</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">descriptor_names</span><span class="p">)]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">descriptors</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Parameter'</span><span class="p">)[</span><span class="s1">'Value_clean'</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="s1">'count'</span><span class="p">,</span> <span class="n">unique_count</span><span class="o">=</span><span class="s1">'nunique'</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="s1">'min'</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="s1">'max'</span><span class="p">))</span>
+<span class="n">allowed_codes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Gender'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">'ICUType'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s1">'MechVent'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}</span>
+<span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">allowed</span> <span class="ow">in</span> <span class="n">allowed_codes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">descriptors</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">descriptors</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">parameter</span><span class="p">),</span> <span class="s1">'Value_clean'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="s1">'observed codes:'</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span> <span class="s1">'unexpected:'</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">values</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">allowed</span><span class="p">)]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
+<span class="c1"># Show identifiable min/max rows for selected variables; no observations are removed.</span>
+<span class="n">inspect_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Height'</span><span class="p">,</span> <span class="s1">'Weight'</span><span class="p">,</span> <span class="s1">'Temp'</span><span class="p">,</span> <span class="s1">'pH'</span><span class="p">,</span> <span class="s1">'HR'</span><span class="p">,</span> <span class="s1">'K'</span><span class="p">,</span> <span class="s1">'Glucose'</span><span class="p">,</span> <span class="s1">'Urine'</span><span class="p">]</span>
+<span class="n">extreme_source</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">inspect_parameters</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">set_a_long</span><span class="p">[</span><span class="s1">'Value_clean'</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+<span class="n">extreme_group</span> <span class="o">=</span> <span class="n">extreme_source</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Parameter'</span><span class="p">)[</span><span class="s1">'Value_clean'</span><span class="p">]</span>
+<span class="n">extreme_indices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">extreme_group</span><span class="o">.</span><span class="n">idxmin</span><span class="p">(),</span> <span class="n">extreme_group</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()])</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">extreme_values</span> <span class="o">=</span> <span class="n">set_a_long</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">extreme_indices</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">'Parameter'</span><span class="p">,</span> <span class="s1">'Value_clean'</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">extreme_values</span><span class="p">)</span>
+<span class="n">extreme_values</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'extreme_values.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>count</th>
+<th>unique_count</th>
+<th>minimum</th>
+<th>maximum</th>
+</tr>
+<tr>
+<th>Parameter</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Age</th>
+<td>4000</td>
+<td>76</td>
+<td>15.0</td>
+<td>90.0</td>
+</tr>
+<tr>
+<th>Gender</th>
+<td>3997</td>
+<td>2</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<th>Height</th>
+<td>2106</td>
+<td>70</td>
+<td>1.8</td>
+<td>431.8</td>
+</tr>
+<tr>
+<th>ICUType</th>
+<td>4000</td>
+<td>4</td>
+<td>1.0</td>
+<td>4.0</td>
+</tr>
+<tr>
+<th>MechVent</th>
+<td>31144</td>
+<td>1</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<th>Weight</th>
+<td>128839</td>
+<td>995</td>
+<td>0.0</td>
+<td>300.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Gender observed codes: [np.float64(0.0), np.float64(1.0)] unexpected: []
+ICUType observed codes: [np.float64(1.0), np.float64(2.0), np.float64(3.0), np.float64(4.0)] unexpected: []
+MechVent observed codes: [np.float64(1.0)] unexpected: []
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>RecordID</th>
+<th>Time</th>
+<th>Parameter</th>
+<th>Value</th>
+<th>hours_since_admission</th>
+<th>Value_clean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1025829</th>
+<td>138459</td>
+<td>01:30</td>
+<td>Glucose</td>
+<td>10.0</td>
+<td>1.500000</td>
+<td>10.0</td>
+</tr>
+<tr>
+<th>504834</th>
+<td>135450</td>
+<td>07:58</td>
+<td>Glucose</td>
+<td>1143.0</td>
+<td>7.966667</td>
+<td>1143.0</td>
+</tr>
+<tr>
+<th>64048</th>
+<td>132894</td>
+<td>32:26</td>
+<td>HR</td>
+<td>0.0</td>
+<td>32.433333</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>487968</th>
+<td>135362</td>
+<td>18:43</td>
+<td>HR</td>
+<td>300.0</td>
+<td>18.716667</td>
+<td>300.0</td>
+</tr>
+<tr>
+<th>854119</th>
+<td>137500</td>
+<td>00:00</td>
+<td>Height</td>
+<td>1.8</td>
+<td>0.000000</td>
+<td>1.8</td>
+</tr>
+<tr>
+<th>1042221</th>
+<td>138546</td>
+<td>00:00</td>
+<td>Height</td>
+<td>431.8</td>
+<td>0.000000</td>
+<td>431.8</td>
+</tr>
+<tr>
+<th>347452</th>
+<td>134564</td>
+<td>00:29</td>
+<td>K</td>
+<td>1.8</td>
+<td>0.483333</td>
+<td>1.8</td>
+</tr>
+<tr>
+<th>681043</th>
+<td>136499</td>
+<td>15:16</td>
+<td>K</td>
+<td>22.9</td>
+<td>15.266667</td>
+<td>22.9</td>
+</tr>
+<tr>
+<th>64580</th>
+<td>132895</td>
+<td>45:34</td>
+<td>Temp</td>
+<td>-17.8</td>
+<td>45.566667</td>
+<td>-17.8</td>
+</tr>
+<tr>
+<th>723508</th>
+<td>136753</td>
+<td>09:23</td>
+<td>Temp</td>
+<td>42.1</td>
+<td>9.383333</td>
+<td>42.1</td>
+</tr>
+<tr>
+<th>174</th>
+<td>132539</td>
+<td>27:37</td>
+<td>Urine</td>
+<td>0.0</td>
+<td>27.616667</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>1354508</th>
+<td>140335</td>
+<td>16:02</td>
+<td>Urine</td>
+<td>11000.0</td>
+<td>16.033333</td>
+<td>11000.0</td>
+</tr>
+<tr>
+<th>228222</th>
+<td>133888</td>
+<td>01:28</td>
+<td>Weight</td>
+<td>0.0</td>
+<td>1.466667</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>1724067</th>
+<td>142501</td>
+<td>00:00</td>
+<td>Weight</td>
+<td>300.0</td>
+<td>0.000000</td>
+<td>300.0</td>
+</tr>
+<tr>
+<th>1101366</th>
+<td>138889</td>
+<td>01:42</td>
+<td>pH</td>
+<td>1.0</td>
+<td>1.700000</td>
+<td>1.0</td>
+</tr>
+<tr>
+<th>1384110</th>
+<td>140525</td>
+<td>22:45</td>
+<td>pH</td>
+<td>735.0</td>
+<td>22.750000</td>
+<td>735.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54e7fa7c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Table-1">Table 1<a class="anchor-link" href="#Table-1">¶</a></h2>
+<p>The raw data have 2,223 <code>-1</code> entries (Gender, Height, and Weight). Ordinary <code>isna()</code> checks missed them because they are numeric codes, not actual missing values. Temperature also has 24 negative entries, with values -17.8 and -12.5; these are not the <code>-1</code> sentinel. Height reaches 431.8 cm and pH reaches 735, suggesting possible recording or unit problems. They remain visible in this initial analysis, so summaries involving these variables need caution and later clinical/source review. Critically ill patients can also have legitimate extreme measurements; I do not apply automatic outlier deletion or guess corrections.</p>
+<p>Gender, ICUType, and MechVent are checked against their documented encodings. MechVent contains only recorded 1s: absence is not proof of no ventilation. Age, Height, and Weight ranges are inspected without inventing clinical exclusion thresholds.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=afbea16b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6b2eabb9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Outcome-summary">Outcome summary<a class="anchor-link" href="#Outcome-summary">¶</a></h2>
+<h2 id="Temporal-missingness">Temporal missingness<a class="anchor-link" href="#Temporal-missingness">¶</a></h2><p>Measurement presence means at least one recorded, non-missing measurement, not its numeric value or clinical validity. Each patient contributes at most once per parameter-hour. Only measurement codes of -1 and actual missing values are excluded; suspicious extremes remain available for review.</p>
+<p>After confirming the validated long CSV exists, release the earlier large objects. Read one raw patient file at a time and accumulate a small count table. Hours 0-47 represent full hours; hour 48 contains only the exact endpoint. Static descriptors (Age, Gender, Height, ICUType) are excluded from the main heatmap because they are usually recorded at admission. MechVent remains time-varying. Patterns may reflect clinical workflow and severity, so missingness may be informative rather than completely random. No causal claims are made.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0237d86f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+
+<span class="k">assert</span> <span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'set-a_long.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">(),</span> <span class="s1">'Run the earlier validated long-table section first.'</span>
+<span class="c1"># GroupBy objects and the list of patient tables can retain large data too.</span>
+<span class="k">for</span> <span class="n">object_name</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="s1">'set_a_long'</span><span class="p">,</span> <span class="s1">'patient_tables'</span><span class="p">,</span> <span class="s1">'patient'</span><span class="p">,</span> <span class="s1">'clinical'</span><span class="p">,</span> <span class="s1">'hours_minutes'</span><span class="p">,</span>
+    <span class="s1">'raw_group'</span><span class="p">,</span> <span class="s1">'negative'</span><span class="p">,</span> <span class="s1">'descriptors'</span><span class="p">,</span> <span class="s1">'values'</span><span class="p">,</span> <span class="s1">'extreme_source'</span><span class="p">,</span>
+    <span class="s1">'extreme_group'</span><span class="p">,</span> <span class="s1">'extreme_values'</span><span class="p">,</span> <span class="s1">'measured'</span><span class="p">,</span> <span class="s1">'ordered'</span><span class="p">,</span> <span class="s1">'static_rows'</span><span class="p">,</span>
+    <span class="s1">'repeated_rows'</span><span class="p">,</span> <span class="s1">'saved_long'</span><span class="p">,</span> <span class="s1">'temporal_data'</span><span class="p">,</span> <span class="s1">'presence'</span><span class="p">,</span>
+<span class="p">]:</span>
+    <span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">object_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">'all'</span><span class="p">)</span>
+
+<span class="n">static_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">,</span> <span class="s1">'ICUType'</span><span class="p">]</span>
+<span class="n">patient_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">DATA</span> <span class="o">/</span> <span class="s1">'set-a'</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'*.txt'</span><span class="p">))</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">patient_files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4000</span>
+
+<span class="c1"># Shared by the two patient-by-patient passes; no full long table is loaded.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_patient_measurements</span><span class="p">(</span><span class="n">patient_path</span><span class="p">):</span>
+    <span class="n">patient</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="n">patient_path</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'Time'</span><span class="p">,</span> <span class="s1">'Parameter'</span><span class="p">,</span> <span class="s1">'Value'</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'Time'</span><span class="p">:</span> <span class="s1">'string'</span><span class="p">,</span> <span class="s1">'Parameter'</span><span class="p">:</span> <span class="s1">'category'</span><span class="p">,</span> <span class="s1">'Value'</span><span class="p">:</span> <span class="s1">'float64'</span><span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">identifier</span> <span class="o">=</span> <span class="n">patient</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">patient</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'RecordID'</span><span class="p">),</span> <span class="s1">'Value'</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">identifier</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">identifier</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">record_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">identifier</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">identifier</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">record_id</span> <span class="ow">and</span> <span class="nb">str</span><span class="p">(</span><span class="n">record_id</span><span class="p">)</span> <span class="o">==</span> <span class="n">patient_path</span><span class="o">.</span><span class="n">stem</span>
+    <span class="n">patient</span> <span class="o">=</span> <span class="n">patient</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">patient</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">ne</span><span class="p">(</span><span class="s1">'RecordID'</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">patient</span><span class="p">[</span><span class="s1">'Time'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\d</span><span class="si">{2}</span><span class="s1">:\d</span><span class="si">{2}</span><span class="s1">'</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">time_parts</span> <span class="o">=</span> <span class="n">patient</span><span class="p">[</span><span class="s1">'Time'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'int16'</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">time_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">59</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">patient</span><span class="p">[</span><span class="s1">'elapsed_minutes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">time_parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">time_parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">patient</span><span class="p">[</span><span class="s1">'elapsed_minutes'</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">48</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">patient</span><span class="p">[</span><span class="s1">'Value_clean'</span><span class="p">]</span> <span class="o">=</span> <span class="n">patient</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">patient</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">record_id</span><span class="p">,</span> <span class="n">patient</span>
+
+<span class="c1"># Verify the small denominator file without loading other outcome columns.</span>
+<span class="n">cohort_ids</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s1">'Outcomes-a.txt'</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'RecordID'</span><span class="p">:</span> <span class="s1">'int32'</span><span class="p">})</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cohort_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4000</span> <span class="ow">and</span> <span class="n">cohort_ids</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span>
+<span class="n">expected_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">cohort_ids</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">])</span>
+<span class="n">n_patients</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected_ids</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">cohort_ids</span>
+<span class="n">hour_counts</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">seen_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">patient_path</span> <span class="ow">in</span> <span class="n">patient_files</span><span class="p">:</span>
+    <span class="n">record_id</span><span class="p">,</span> <span class="n">patient</span> <span class="o">=</span> <span class="n">read_patient_measurements</span><span class="p">(</span><span class="n">patient_path</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">record_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen_ids</span>
+    <span class="n">seen_ids</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">record_id</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">patient</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">parameter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hour_counts</span><span class="p">:</span>
+            <span class="n">hour_counts</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">49</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">'int32'</span><span class="p">)</span>
+    <span class="n">presence</span> <span class="o">=</span> <span class="n">patient</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">patient</span><span class="p">[</span><span class="s1">'Value_clean'</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">(),</span> <span class="p">[</span><span class="s1">'Parameter'</span><span class="p">,</span> <span class="s1">'elapsed_minutes'</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">presence</span><span class="p">[</span><span class="s1">'hour_bin'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">presence</span><span class="p">[</span><span class="s1">'elapsed_minutes'</span><span class="p">]</span> <span class="o">//</span> <span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'int8'</span><span class="p">)</span>
+    <span class="n">presence</span> <span class="o">=</span> <span class="n">presence</span><span class="p">[[</span><span class="s1">'Parameter'</span><span class="p">,</span> <span class="s1">'hour_bin'</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">hour</span> <span class="ow">in</span> <span class="n">presence</span><span class="o">.</span><span class="n">itertuples</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">hour_counts</span><span class="p">[</span><span class="n">parameter</span><span class="p">][</span><span class="n">hour</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">del</span> <span class="n">patient</span><span class="p">,</span> <span class="n">presence</span>
+<span class="k">assert</span> <span class="n">seen_ids</span> <span class="o">==</span> <span class="n">expected_ids</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">hour_counts</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span> <span class="o">==</span> <span class="mi">41</span>
+<span class="n">hourly_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">hour_counts</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">'index'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">49</span><span class="p">))</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">hourly_counts</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Parameter'</span>
+<span class="n">hourly_counts</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'hour_bin'</span>
+<span class="n">hourly_proportion</span> <span class="o">=</span> <span class="n">hourly_counts</span> <span class="o">/</span> <span class="n">n_patients</span>
+<span class="k">assert</span> <span class="n">hourly_proportion</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="mi">49</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">hourly_proportion</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">hourly_proportion</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">hourly_proportion</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'hourly_measurement_proportion.csv'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Patients:'</span><span class="p">,</span> <span class="n">n_patients</span><span class="p">,</span> <span class="s1">'Shape:'</span><span class="p">,</span> <span class="n">hourly_proportion</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Proportion range:'</span><span class="p">,</span> <span class="n">hourly_proportion</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">hourly_proportion</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="k">del</span> <span class="n">hour_counts</span><span class="p">,</span> <span class="n">seen_ids</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=787c4196">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Patients: 4000 Shape: (41, 49)
+Proportion range: 0.0 1.0
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>0</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=726e028a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Run after the temporal measurement-presence calculation cell.</span>
+<span class="n">time_parameters</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">parameter</span> <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span>
+    <span class="k">if</span> <span class="n">parameter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">static_parameters</span>
+<span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">hourly_proportion</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">time_parameters</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="s1">'auto'</span><span class="p">,</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">'viridis'</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time_parameters</span><span class="p">)),</span> <span class="n">labels</span><span class="o">=</span><span class="n">time_parameters</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">'Hour since ICU admission (48 = endpoint only)'</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">'Time-varying parameter'</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'Hourly measurement presence'</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Proportion of 4,000 ICU stays'</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">figure_path</span> <span class="o">=</span> <span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'temporal_missingness.png'</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">figure_path</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">110</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">image</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Figure saved to:'</span><span class="p">,</span> <span class="n">figure_path</span><span class="p">)</span>
+
+<span class="c1"># Display static descriptors separately from the time-varying heatmap.</span>
+<span class="n">display</span><span class="p">(</span><span class="n">hourly_proportion</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">static_parameters</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Figure saved to: output\temporal_missingness.png
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>hour_bin</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>...</th>
+<th>39</th>
+<th>40</th>
+<th>41</th>
+<th>42</th>
+<th>43</th>
+<th>44</th>
+<th>45</th>
+<th>46</th>
+<th>47</th>
+<th>48</th>
+</tr>
+<tr>
+<th>Parameter</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Age</th>
+<td>1.000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>Gender</th>
+<td>0.999</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>Height</th>
+<td>0.526</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th>ICUType</th>
+<td>1.000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<p>4 rows × 49 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7148ed93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Wide-table-missingness">Wide-table missingness<a class="anchor-link" href="#Wide-table-missingness">¶</a></h2>
+<h2 id="Outcome-data">Outcome data<a class="anchor-link" href="#Outcome-data">¶</a></h2><p>Load the small outcome table and inspect its actual column names. Resolve the expected fields by normalized names, failing explicitly if a field is absent or ambiguous. Preserve raw outcome values: Survival = -1 means no recorded death, not a negative duration and not an ordinary measurement-missingness code. Recorded death may occur after hospital discharge.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16b50c7e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">outcomes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s1">'Outcomes-a.txt'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'RecordID'</span><span class="p">:</span> <span class="s1">'int32'</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Outcome columns:'</span><span class="p">,</span> <span class="n">outcomes</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4000</span>
+<span class="k">assert</span> <span class="n">outcomes</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4000</span>
+<span class="k">assert</span> <span class="ow">not</span> <span class="n">outcomes</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">outcomes</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">])</span> <span class="o">==</span> <span class="n">expected_ids</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">outcome_column</span><span class="p">(</span><span class="n">normalized_name</span><span class="p">):</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="p">[</span><span class="n">column</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">outcomes</span><span class="o">.</span><span class="n">columns</span>
+               <span class="k">if</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">character</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">column</span> <span class="k">if</span> <span class="n">character</span><span class="o">.</span><span class="n">isalnum</span><span class="p">())</span> <span class="o">==</span> <span class="n">normalized_name</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Expected one outcome column for </span><span class="si">{</span><span class="n">normalized_name</span><span class="si">}</span><span class="s1">; found </span><span class="si">{</span><span class="n">matches</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">death_column</span> <span class="o">=</span> <span class="n">outcome_column</span><span class="p">(</span><span class="s1">'inhospitaldeath'</span><span class="p">)</span>
+<span class="n">los_column</span> <span class="o">=</span> <span class="n">outcome_column</span><span class="p">(</span><span class="s1">'lengthofstay'</span><span class="p">)</span>
+<span class="n">saps_column</span> <span class="o">=</span> <span class="n">outcome_column</span><span class="p">(</span><span class="s1">'sapsi'</span><span class="p">)</span>
+<span class="n">sofa_column</span> <span class="o">=</span> <span class="n">outcome_column</span><span class="p">(</span><span class="s1">'sofa'</span><span class="p">)</span>
+<span class="n">survival_column</span> <span class="o">=</span> <span class="n">outcome_column</span><span class="p">(</span><span class="s1">'survival'</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">death_column</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">outcomes</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">outcomes</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'RecordID'</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">outcomes</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'RecordID'</span><span class="p">)</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">'Number coded -1'</span><span class="p">))</span>
+</pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fd88a5a2">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Outcome columns: ['RecordID', 'SAPS-I', 'SOFA', 'Length_of_stay', 'Survival', 'In-hospital_death']
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>RecordID</th>
+<th>SAPS-I</th>
+<th>SOFA</th>
+<th>Length_of_stay</th>
+<th>Survival</th>
+<th>In-hospital_death</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>132539</td>
+<td>6</td>
+<td>1</td>
+<td>5</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>132540</td>
+<td>16</td>
+<td>8</td>
+<td>8</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>132541</td>
+<td>21</td>
+<td>11</td>
+<td>19</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>132543</td>
+<td>7</td>
+<td>1</td>
+<td>9</td>
+<td>575</td>
+<td>0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>132545</td>
+<td>17</td>
+<td>2</td>
+<td>4</td>
+<td>918</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>SAPS-I</th>
+<th>SOFA</th>
+<th>Length_of_stay</th>
+<th>Survival</th>
+<th>In-hospital_death</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>4000.000000</td>
+<td>4000.000000</td>
+<td>4000.000000</td>
+<td>4000.000000</td>
+<td>4000.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>14.203500</td>
+<td>6.402500</td>
+<td>13.441750</td>
+<td>128.735500</td>
+<td>0.138500</td>
+</tr>
+<tr>
+<th>std</th>
+<td>6.088584</td>
+<td>4.201298</td>
+<td>12.246371</td>
+<td>363.714273</td>
+<td>0.345467</td>
+</tr>
+<tr>
+<th>min</th>
+<td>-1.000000</td>
+<td>-1.000000</td>
+<td>-1.000000</td>
+<td>-1.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>11.000000</td>
+<td>3.000000</td>
+<td>6.000000</td>
+<td>-1.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>15.000000</td>
+<td>6.000000</td>
+<td>10.000000</td>
+<td>-1.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>18.000000</td>
+<td>9.000000</td>
+<td>17.000000</td>
+<td>16.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>max</th>
+<td>34.000000</td>
+<td>22.000000</td>
+<td>154.000000</td>
+<td>2600.000000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>SAPS-I                190
+SOFA                  144
+Length_of_stay         60
+Survival             2526
+In-hospital_death       0
+Name: Number coded -1, dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=334a6fa2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Informative-missingness">Informative missingness<a class="anchor-link" href="#Informative-missingness">¶</a></h2>
+<h2 id="Build-wide-table">Build wide table<a class="anchor-link" href="#Build-wide-table">¶</a></h2><p>Make a second pass through the patient files, retaining only one summary row per stay. Use one inclusive 0-48-hour window. First and last refer to chronological non-missing values; source row order breaks timestamp ties. Static descriptors receive a single first non-missing value plus a presence count. Report conflicting static values for review instead of silently treating them as repeated physiologic variables.</p>
+<p>Weight receives longitudinal summaries because it can vary. A separate admission-time weight (time zero only) is used in Table 1. Missing admission weight is not replaced with a later weight. Measurement -1 codes do not contribute to summaries, and other suspicious values remain unchanged. This initial representation supports cohort characterization and may be revised later; no model is built.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0555ca5c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">wide_rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">static_conflicts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">patient_path</span> <span class="ow">in</span> <span class="n">patient_files</span><span class="p">:</span>
+    <span class="n">record_id</span><span class="p">,</span> <span class="n">patient</span> <span class="o">=</span> <span class="n">read_patient_measurements</span><span class="p">(</span><span class="n">patient_path</span><span class="p">)</span>
+    <span class="n">patient</span> <span class="o">=</span> <span class="n">patient</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'elapsed_minutes'</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">'stable'</span><span class="p">)</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'RecordID'</span><span class="p">:</span> <span class="n">record_id</span><span class="p">}</span>
+    <span class="c1"># Initialize absent parameters explicitly, including static presence counts.</span>
+    <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+        <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_count'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">static_parameters</span><span class="p">:</span>
+            <span class="n">row</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">statistic</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'first'</span><span class="p">,</span> <span class="s1">'last'</span><span class="p">,</span> <span class="s1">'min'</span><span class="p">,</span> <span class="s1">'max'</span><span class="p">,</span> <span class="s1">'mean'</span><span class="p">]:</span>
+                <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">statistic</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">for</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">patient</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Parameter'</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s1">'Value_clean'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+        <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_count'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">valid</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">static_parameters</span><span class="p">:</span>
+            <span class="n">row</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">valid</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">static_conflicts</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">'RecordID'</span><span class="p">:</span> <span class="n">record_id</span><span class="p">,</span> <span class="s1">'Parameter'</span><span class="p">:</span> <span class="n">parameter</span><span class="p">,</span>
+                                         <span class="s1">'values'</span><span class="p">:</span> <span class="n">valid</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_first'</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_last'</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_min'</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+            <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_max'</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+            <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_mean'</span><span class="p">]</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">admission_weight</span> <span class="o">=</span> <span class="n">patient</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">patient</span><span class="p">[</span><span class="s1">'Parameter'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'Weight'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">patient</span><span class="p">[</span><span class="s1">'elapsed_minutes'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s1">'Value_clean'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">row</span><span class="p">[</span><span class="s1">'Weight_admission'</span><span class="p">]</span> <span class="o">=</span> <span class="n">admission_weight</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">admission_weight</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">wide_rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">patient</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">valid</span><span class="p">,</span> <span class="n">admission_weight</span><span class="p">,</span> <span class="n">row</span>
+
+<span class="n">set_a_wide</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wide_rows</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">wide_rows</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="n">count_columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s1">_count'</span> <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">]</span>
+<span class="n">set_a_wide</span><span class="p">[</span><span class="n">count_columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">set_a_wide</span><span class="p">[</span><span class="n">count_columns</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'int32'</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_a_wide</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4000</span> <span class="ow">and</span> <span class="n">set_a_wide</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">set_a_wide</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">])</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">outcomes</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">])</span>
+<span class="n">set_a_wide</span> <span class="o">=</span> <span class="n">set_a_wide</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">outcomes</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">'RecordID'</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s1">'one_to_one'</span><span class="p">,</span> <span class="n">indicator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">set_a_wide</span><span class="p">[</span><span class="s1">'_merge'</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="s1">'both'</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="n">set_a_wide</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">'_merge'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_a_wide</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4000</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">set_a_wide</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="n">set_a_wide</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'set-a_wide.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Wide shape:'</span><span class="p">,</span> <span class="n">set_a_wide</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Conflicting static patient/parameter pairs:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">static_conflicts</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">static_conflicts</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">set_a_wide</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6b84c986">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Wide shape: (4000, 237)
+Conflicting static patient/parameter pairs: 0
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>RecordID</th>
+<th>ALP_count</th>
+<th>ALP_first</th>
+<th>ALP_last</th>
+<th>ALP_min</th>
+<th>ALP_max</th>
+<th>ALP_mean</th>
+<th>ALT_count</th>
+<th>ALT_first</th>
+<th>ALT_last</th>
+<th>...</th>
+<th>pH_last</th>
+<th>pH_min</th>
+<th>pH_max</th>
+<th>pH_mean</th>
+<th>Weight_admission</th>
+<th>SAPS-I</th>
+<th>SOFA</th>
+<th>Length_of_stay</th>
+<th>Survival</th>
+<th>In-hospital_death</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>132539</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>6</td>
+<td>1</td>
+<td>5</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>132540</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>7.37</td>
+<td>7.34</td>
+<td>7.45</td>
+<td>7.395</td>
+<td>76.0</td>
+<td>16</td>
+<td>8</td>
+<td>8</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>132541</td>
+<td>2</td>
+<td>127.0</td>
+<td>105.0</td>
+<td>105.0</td>
+<td>127.0</td>
+<td>116.0</td>
+<td>2</td>
+<td>91.0</td>
+<td>75.0</td>
+<td>...</td>
+<td>7.47</td>
+<td>7.47</td>
+<td>7.51</td>
+<td>7.495</td>
+<td>56.7</td>
+<td>21</td>
+<td>11</td>
+<td>19</td>
+<td>-1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>132543</td>
+<td>1</td>
+<td>105.0</td>
+<td>105.0</td>
+<td>105.0</td>
+<td>105.0</td>
+<td>105.0</td>
+<td>1</td>
+<td>12.0</td>
+<td>12.0</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>84.6</td>
+<td>7</td>
+<td>1</td>
+<td>9</td>
+<td>575</td>
+<td>0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>132545</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>...</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>17</td>
+<td>2</td>
+<td>4</td>
+<td>918</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>5 rows × 237 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e891c379">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="AI-use-statement">AI-use statement<a class="anchor-link" href="#AI-use-statement">¶</a></h2>
+<h2 id="Table-1">Table 1<a class="anchor-link" href="#Table-1">¶</a></h2><p>Describe the whole cohort and groups defined by in-hospital death. Continuous variables use median [Q1, Q3] among available values, with missing counts shown separately. Categorical entries are n (%) using all patients in each group as the denominator, including a missing category. Preserve unexpected categorical encodings as labeled values for review.</p>
+<p>Use admission-time Weight. SAPS-I and SOFA are supplied severity scores and are not necessarily admission-time measurements. Negative score codes are excluded only in this descriptive copy, since they are not interpretable scores; the original outcomes remain unchanged. No tests or adjusted comparisons are performed. Inspect group differences and missing counts when interpreting the table.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8957db18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">table_data</span> <span class="o">=</span> <span class="n">set_a_wide</span><span class="p">[[</span><span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Gender'</span><span class="p">,</span> <span class="s1">'ICUType'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">,</span> <span class="s1">'Weight_admission'</span><span class="p">,</span>
+                             <span class="n">saps_column</span><span class="p">,</span> <span class="n">sofa_column</span><span class="p">,</span> <span class="n">death_column</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span><span class="n">saps_column</span><span class="p">,</span> <span class="n">sofa_column</span><span class="p">]:</span>
+    <span class="n">table_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">table_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">table_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">category_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Gender'</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">'Female'</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">'Male'</span><span class="p">},</span>
+                   <span class="s1">'ICUType'</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">'Coronary'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">'Cardiac surgery recovery'</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">'Medical'</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">'Surgical'</span><span class="p">}}</span>
+<span class="k">for</span> <span class="n">column</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">category_labels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">table_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="n">table_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="s1">'Missing'</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">else</span> <span class="n">labels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="sa">f</span><span class="s1">'Unexpected: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s1">'</span><span class="p">))</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Overall'</span><span class="p">:</span> <span class="n">table_data</span><span class="p">,</span>
+          <span class="s1">'Survived'</span><span class="p">:</span> <span class="n">table_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">table_data</span><span class="p">[</span><span class="n">death_column</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">)],</span>
+          <span class="s1">'Died'</span><span class="p">:</span> <span class="n">table_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">table_data</span><span class="p">[</span><span class="n">death_column</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">)]}</span>
+<span class="n">table_columns</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">entries</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'N'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">))}</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Age'</span><span class="p">,</span> <span class="s1">'Height'</span><span class="p">,</span> <span class="s1">'Weight_admission'</span><span class="p">,</span> <span class="n">saps_column</span><span class="p">,</span> <span class="n">sofa_column</span><span class="p">]:</span>
+        <span class="n">q1</span><span class="p">,</span> <span class="n">median</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+        <span class="n">entries</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s1">, median [Q1, Q3]'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">median</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">q1</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">q3</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">]'</span>
+        <span class="n">entries</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s1">, missing n'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">category_labels</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">table_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+            <span class="n">percent</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">count</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+            <span class="n">entries</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">, n (%)'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">percent</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)'</span>
+    <span class="n">table_columns</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">entries</span>
+<span class="n">table1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">table_columns</span><span class="p">)</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Characteristic'</span>
+<span class="n">display</span><span class="p">(</span><span class="n">table1</span><span class="p">)</span>
+<span class="n">table1</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'table1.csv'</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">table_data</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="n">group</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Overall</th>
+<th>Survived</th>
+<th>Died</th>
+</tr>
+<tr>
+<th>Characteristic</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>N</th>
+<td>4000</td>
+<td>3446</td>
+<td>554</td>
+</tr>
+<tr>
+<th>Age, median [Q1, Q3]</th>
+<td>67.0 [52.8, 78.0]</td>
+<td>66.0 [51.2, 78.0]</td>
+<td>74.0 [60.0, 83.0]</td>
+</tr>
+<tr>
+<th>Age, missing n</th>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>Height, median [Q1, Q3]</th>
+<td>170.2 [162.6, 177.8]</td>
+<td>170.2 [162.6, 177.8]</td>
+<td>170.2 [160.0, 177.8]</td>
+</tr>
+<tr>
+<th>Height, missing n</th>
+<td>1894</td>
+<td>1601</td>
+<td>293</td>
+</tr>
+<tr>
+<th>Weight_admission, median [Q1, Q3]</th>
+<td>78.6 [66.0, 92.0]</td>
+<td>79.2 [66.5, 92.3]</td>
+<td>75.0 [61.9, 90.0]</td>
+</tr>
+<tr>
+<th>Weight_admission, missing n</th>
+<td>326</td>
+<td>298</td>
+<td>28</td>
+</tr>
+<tr>
+<th>SAPS-I, median [Q1, Q3]</th>
+<td>15.0 [11.0, 19.0]</td>
+<td>15.0 [11.0, 18.0]</td>
+<td>17.0 [14.0, 21.0]</td>
+</tr>
+<tr>
+<th>SAPS-I, missing n</th>
+<td>190</td>
+<td>165</td>
+<td>25</td>
+</tr>
+<tr>
+<th>SOFA, median [Q1, Q3]</th>
+<td>7.0 [3.0, 9.0]</td>
+<td>6.0 [3.0, 9.0]</td>
+<td>8.0 [5.0, 11.0]</td>
+</tr>
+<tr>
+<th>SOFA, missing n</th>
+<td>144</td>
+<td>134</td>
+<td>10</td>
+</tr>
+<tr>
+<th>Gender: Female, n (%)</th>
+<td>1751 (43.8%)</td>
+<td>1498 (43.5%)</td>
+<td>253 (45.7%)</td>
+</tr>
+<tr>
+<th>Gender: Male, n (%)</th>
+<td>2246 (56.1%)</td>
+<td>1946 (56.5%)</td>
+<td>300 (54.2%)</td>
+</tr>
+<tr>
+<th>Gender: Missing, n (%)</th>
+<td>3 (0.1%)</td>
+<td>2 (0.1%)</td>
+<td>1 (0.2%)</td>
+</tr>
+<tr>
+<th>ICUType: Cardiac surgery recovery, n (%)</th>
+<td>874 (21.9%)</td>
+<td>831 (24.1%)</td>
+<td>43 (7.8%)</td>
+</tr>
+<tr>
+<th>ICUType: Coronary, n (%)</th>
+<td>577 (14.4%)</td>
+<td>496 (14.4%)</td>
+<td>81 (14.6%)</td>
+</tr>
+<tr>
+<th>ICUType: Medical, n (%)</th>
+<td>1481 (37.0%)</td>
+<td>1206 (35.0%)</td>
+<td>275 (49.6%)</td>
+</tr>
+<tr>
+<th>ICUType: Surgical, n (%)</th>
+<td>1068 (26.7%)</td>
+<td>913 (26.5%)</td>
+<td>155 (28.0%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>0</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62500af0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Outcome-summary">Outcome summary<a class="anchor-link" href="#Outcome-summary">¶</a></h2><p>Summarize hospital mortality separately from follow-up Survival. Keep Survival = -1 as a reported no-recorded-death category; summarize durations only for nonnegative entries. This conditional duration summary is not a cohort survival estimate. Length_of_stay covers hospitalization after ICU admission, including time after ICU discharge.</p>
+<p>For length of stay and severity scores, report negative codes separately and exclude them only from duration/score summaries. Flag zero/one-day durations for review against the published definitions, retaining recorded nonnegative values. Interpret the resulting medians alongside these code counts and the number of available observations.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b5339db7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mortality_counts</span> <span class="o">=</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">death_column</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">outcome_totals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+    <span class="s1">'Total N'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">outcomes</span><span class="p">),</span>
+    <span class="s1">'Survived hospital discharge'</span><span class="p">:</span> <span class="n">mortality_counts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">'In-hospital deaths'</span><span class="p">:</span> <span class="n">mortality_counts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">'In-hospital mortality (%)'</span><span class="p">:</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">mortality_counts</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">outcomes</span><span class="p">),</span>
+<span class="p">})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">outcome_totals</span><span class="p">)</span>
+<span class="n">summary_records</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="p">[</span><span class="n">los_column</span><span class="p">,</span> <span class="n">saps_column</span><span class="p">,</span> <span class="n">sofa_column</span><span class="p">,</span> <span class="n">survival_column</span><span class="p">]:</span>
+    <span class="n">recorded</span> <span class="o">=</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">column</span><span class="p">]</span>
+    <span class="n">nonnegative</span> <span class="o">=</span> <span class="n">recorded</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">recorded</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
+    <span class="n">quartiles</span> <span class="o">=</span> <span class="n">nonnegative</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+    <span class="n">summary_records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">'Variable'</span><span class="p">:</span> <span class="n">column</span><span class="p">,</span> <span class="s1">'N_nonnegative'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">nonnegative</span><span class="p">),</span>
+        <span class="s1">'N_minus1'</span><span class="p">:</span> <span class="n">recorded</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s1">'N_other_negative'</span><span class="p">:</span> <span class="n">recorded</span><span class="o">.</span><span class="n">lt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+        <span class="s1">'N_missing'</span><span class="p">:</span> <span class="n">recorded</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s1">'median'</span><span class="p">:</span> <span class="n">quartiles</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span>
+        <span class="s1">'Q1'</span><span class="p">:</span> <span class="n">quartiles</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">0.25</span><span class="p">],</span> <span class="s1">'Q3'</span><span class="p">:</span> <span class="n">quartiles</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mf">0.75</span><span class="p">],</span>
+        <span class="s1">'min'</span><span class="p">:</span> <span class="n">nonnegative</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="s1">'max'</span><span class="p">:</span> <span class="n">nonnegative</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="p">})</span>
+<span class="n">outcome_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">summary_records</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Variable'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">outcome_summary</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Survival = -1 (no recorded death):'</span><span class="p">,</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">survival_column</span><span class="p">]</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Length_of_stay of zero or one day:'</span><span class="p">,</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">los_column</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Survival of zero or one day:'</span><span class="p">,</span> <span class="n">outcomes</span><span class="p">[</span><span class="n">survival_column</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">outcome_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'outcome_summary.csv'</span><span class="p">)</span>
+<span class="n">outcome_totals</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'outcome_totals.csv'</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="s1">'Value'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Total N                        4000.00
+Survived hospital discharge    3446.00
+In-hospital deaths              554.00
+In-hospital mortality (%)        13.85
+dtype: float64</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>N_nonnegative</th>
+<th>N_minus1</th>
+<th>N_other_negative</th>
+<th>N_missing</th>
+<th>median</th>
+<th>Q1</th>
+<th>Q3</th>
+<th>min</th>
+<th>max</th>
+</tr>
+<tr>
+<th>Variable</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Length_of_stay</th>
+<td>3940</td>
+<td>60</td>
+<td>0</td>
+<td>0</td>
+<td>10.0</td>
+<td>6.00</td>
+<td>17.0</td>
+<td>1</td>
+<td>154</td>
+</tr>
+<tr>
+<th>SAPS-I</th>
+<td>3810</td>
+<td>190</td>
+<td>0</td>
+<td>0</td>
+<td>15.0</td>
+<td>11.00</td>
+<td>19.0</td>
+<td>1</td>
+<td>34</td>
+</tr>
+<tr>
+<th>SOFA</th>
+<td>3856</td>
+<td>144</td>
+<td>0</td>
+<td>0</td>
+<td>7.0</td>
+<td>3.00</td>
+<td>9.0</td>
+<td>0</td>
+<td>22</td>
+</tr>
+<tr>
+<th>Survival</th>
+<td>1474</td>
+<td>2526</td>
+<td>0</td>
+<td>0</td>
+<td>70.0</td>
+<td>10.25</td>
+<td>479.0</td>
+<td>0</td>
+<td>2600</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Survival = -1 (no recorded death): 2526
+Length_of_stay of zero or one day: 1
+Survival of zero or one day: 29
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=986d9c2a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Wide-table-missingness">Wide-table missingness<a class="anchor-link" href="#Wide-table-missingness">¶</a></h2><p>Define ever measured as a positive non-missing count for each original parameter, including static descriptors. A single measurement is sufficient for patient-level presence even when most hours are empty. Presence does not establish clinical validity, and missing MechVent records are not recoded as absence of ventilation. Use the ranked table and bar chart to identify high and low availability after running this section.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e11db376">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ever_measured</span> <span class="o">=</span> <span class="n">set_a_wide</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'RecordID'</span><span class="p">)[</span><span class="n">count_columns</span><span class="p">]</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ever_measured</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">parameters</span>
+<span class="n">availability</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'N_ever_measured'</span><span class="p">:</span> <span class="n">ever_measured</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+    <span class="s1">'pct_ever_measured'</span><span class="p">:</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">ever_measured</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+    <span class="s1">'pct_never_measured'</span><span class="p">:</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="o">~</span><span class="n">ever_measured</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'pct_never_measured'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">availability</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Parameter'</span>
+<span class="n">display</span><span class="p">(</span><span class="n">availability</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">availability</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'patient_parameter_availability.csv'</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">availability</span><span class="p">[</span><span class="s1">'pct_never_measured'</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'steelblue'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'Patients never measured (%)'</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">'Parameter'</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+       <span class="n">title</span><span class="o">=</span><span class="s1">'Patient-level missingness during the first 48 hours'</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'wide_missingness.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">110</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>N_ever_measured</th>
+<th>pct_ever_measured</th>
+<th>pct_never_measured</th>
+</tr>
+<tr>
+<th>Parameter</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>TroponinI</th>
+<td>205</td>
+<td>5.12</td>
+<td>94.88</td>
+</tr>
+<tr>
+<th>Cholesterol</th>
+<td>305</td>
+<td>7.62</td>
+<td>92.38</td>
+</tr>
+<tr>
+<th>TroponinT</th>
+<td>863</td>
+<td>21.58</td>
+<td>78.42</td>
+</tr>
+<tr>
+<th>RespRate</th>
+<td>1101</td>
+<td>27.52</td>
+<td>72.47</td>
+</tr>
+<tr>
+<th>Albumin</th>
+<td>1615</td>
+<td>40.38</td>
+<td>59.62</td>
+</tr>
+<tr>
+<th>ALP</th>
+<td>1690</td>
+<td>42.25</td>
+<td>57.75</td>
+</tr>
+<tr>
+<th>Bilirubin</th>
+<td>1718</td>
+<td>42.95</td>
+<td>57.05</td>
+</tr>
+<tr>
+<th>ALT</th>
+<td>1721</td>
+<td>43.03</td>
+<td>56.97</td>
+</tr>
+<tr>
+<th>AST</th>
+<td>1725</td>
+<td>43.12</td>
+<td>56.88</td>
+</tr>
+<tr>
+<th>SaO2</th>
+<td>1792</td>
+<td>44.80</td>
+<td>55.20</td>
+</tr>
+<tr>
+<th>Height</th>
+<td>2106</td>
+<td>52.65</td>
+<td>47.35</td>
+</tr>
+<tr>
+<th>Lactate</th>
+<td>2183</td>
+<td>54.58</td>
+<td>45.42</td>
+</tr>
+<tr>
+<th>MechVent</th>
+<td>2529</td>
+<td>63.22</td>
+<td>36.78</td>
+</tr>
+<tr>
+<th>FiO2</th>
+<td>2717</td>
+<td>67.92</td>
+<td>32.07</td>
+</tr>
+<tr>
+<th>MAP</th>
+<td>2792</td>
+<td>69.80</td>
+<td>30.20</td>
+</tr>
+<tr>
+<th>SysABP</th>
+<td>2799</td>
+<td>69.97</td>
+<td>30.02</td>
+</tr>
+<tr>
+<th>DiasABP</th>
+<td>2799</td>
+<td>69.97</td>
+<td>30.02</td>
+</tr>
+<tr>
+<th>PaO2</th>
+<td>3023</td>
+<td>75.58</td>
+<td>24.42</td>
+</tr>
+<tr>
+<th>PaCO2</th>
+<td>3023</td>
+<td>75.58</td>
+<td>24.42</td>
+</tr>
+<tr>
+<th>pH</th>
+<td>3040</td>
+<td>76.00</td>
+<td>24.00</td>
+</tr>
+<tr>
+<th>NIMAP</th>
+<td>3481</td>
+<td>87.02</td>
+<td>12.98</td>
+</tr>
+<tr>
+<th>NIDiasABP</th>
+<td>3483</td>
+<td>87.08</td>
+<td>12.92</td>
+</tr>
+<tr>
+<th>NISysABP</th>
+<td>3493</td>
+<td>87.32</td>
+<td>12.68</td>
+</tr>
+<tr>
+<th>Weight</th>
+<td>3704</td>
+<td>92.60</td>
+<td>7.40</td>
+</tr>
+<tr>
+<th>Urine</th>
+<td>3883</td>
+<td>97.08</td>
+<td>2.92</td>
+</tr>
+<tr>
+<th>Glucose</th>
+<td>3887</td>
+<td>97.18</td>
+<td>2.82</td>
+</tr>
+<tr>
+<th>Mg</th>
+<td>3897</td>
+<td>97.42</td>
+<td>2.58</td>
+</tr>
+<tr>
+<th>K</th>
+<td>3904</td>
+<td>97.60</td>
+<td>2.40</td>
+</tr>
+<tr>
+<th>HCO3</th>
+<td>3924</td>
+<td>98.10</td>
+<td>1.90</td>
+</tr>
+<tr>
+<th>Na</th>
+<td>3925</td>
+<td>98.12</td>
+<td>1.88</td>
+</tr>
+<tr>
+<th>WBC</th>
+<td>3927</td>
+<td>98.18</td>
+<td>1.82</td>
+</tr>
+<tr>
+<th>Platelets</th>
+<td>3932</td>
+<td>98.30</td>
+<td>1.70</td>
+</tr>
+<tr>
+<th>BUN</th>
+<td>3936</td>
+<td>98.40</td>
+<td>1.60</td>
+</tr>
+<tr>
+<th>Temp</th>
+<td>3936</td>
+<td>98.40</td>
+<td>1.60</td>
+</tr>
+<tr>
+<th>Creatinine</th>
+<td>3936</td>
+<td>98.40</td>
+<td>1.60</td>
+</tr>
+<tr>
+<th>HCT</th>
+<td>3936</td>
+<td>98.40</td>
+<td>1.60</td>
+</tr>
+<tr>
+<th>GCS</th>
+<td>3936</td>
+<td>98.40</td>
+<td>1.60</td>
+</tr>
+<tr>
+<th>HR</th>
+<td>3937</td>
+<td>98.42</td>
+<td>1.58</td>
+</tr>
+<tr>
+<th>Gender</th>
+<td>3997</td>
+<td>99.92</td>
+<td>0.08</td>
+</tr>
+<tr>
+<th>Age</th>
+<td>4000</td>
+<td>100.00</td>
+<td>0.00</td>
+</tr>
+<tr>
+<th>ICUType</th>
+<td>4000</td>
+<td>100.00</td>
+<td>0.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6520e25a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Informative-missingness">Informative missingness<a class="anchor-link" href="#Informative-missingness">¶</a></h2><p>Compare mortality between patients with and without each parameter recorded. Report group sizes and sort by absolute mortality difference (measured minus not measured). An empty group has undefined mortality, represented by NaN rather than zero. Small groups can yield unstable differences, and these comparisons are unadjusted.</p>
+<p>This is an association, not evidence that measurement causes mortality. Clinicians may order tests more often for sicker patients, so measurement presence can contain information about patient state and care processes. The plot shows at most 20 defined differences, in percentage points; review denominators before interpreting their ranking.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b394fa38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mortality</span> <span class="o">=</span> <span class="n">set_a_wide</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'RecordID'</span><span class="p">)[</span><span class="n">death_column</span><span class="p">]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">ever_measured</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">presence_records</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+    <span class="n">present</span> <span class="o">=</span> <span class="n">ever_measured</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span>
+    <span class="n">rate_measured</span> <span class="o">=</span> <span class="n">mortality</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">present</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">rate_not_measured</span> <span class="o">=</span> <span class="n">mortality</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">present</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">presence_records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">'Parameter'</span><span class="p">:</span> <span class="n">parameter</span><span class="p">,</span> <span class="s1">'N_measured'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">present</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+        <span class="s1">'N_not_measured'</span><span class="p">:</span> <span class="nb">int</span><span class="p">((</span><span class="o">~</span><span class="n">present</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+        <span class="s1">'mortality_measured'</span><span class="p">:</span> <span class="n">rate_measured</span><span class="p">,</span> <span class="s1">'mortality_not_measured'</span><span class="p">:</span> <span class="n">rate_not_measured</span><span class="p">,</span>
+        <span class="s1">'mortality_difference'</span><span class="p">:</span> <span class="n">rate_measured</span> <span class="o">-</span> <span class="n">rate_not_measured</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="n">presence_mortality</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">presence_records</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="s1">'mortality_difference'</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">values</span><span class="p">:</span> <span class="n">values</span><span class="o">.</span><span class="n">abs</span><span class="p">(),</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">na_position</span><span class="o">=</span><span class="s1">'last'</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">presence_mortality</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">presence_mortality</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'presence_mortality.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plot_rows</span> <span class="o">=</span> <span class="n">presence_mortality</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'mortality_difference'</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'mortality_difference'</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">plot_rows</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">Parameter</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">N_measured</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">row</span><span class="o">.</span><span class="n">N_not_measured</span><span class="si">}</span><span class="s1">)'</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">plot_rows</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()]</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">plot_rows</span><span class="p">[</span><span class="s1">'mortality_difference'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'steelblue'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">'Mortality difference (measured minus not measured), percentage points'</span><span class="p">,</span>
+           <span class="n">ylabel</span><span class="o">=</span><span class="s1">'Parameter (N measured / N not measured)'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'Measurement presence and mortality'</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'informative_missingness.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">110</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Parameter</th>
+<th>N_measured</th>
+<th>N_not_measured</th>
+<th>mortality_measured</th>
+<th>mortality_not_measured</th>
+<th>mortality_difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>12</th>
+<td>Gender</td>
+<td>3997</td>
+<td>3</td>
+<td>0.1384</td>
+<td>0.3333</td>
+<td>-0.1950</td>
+</tr>
+<tr>
+<th>35</th>
+<td>TroponinI</td>
+<td>205</td>
+<td>3795</td>
+<td>0.2780</td>
+<td>0.1310</td>
+<td>0.1471</td>
+</tr>
+<tr>
+<th>36</th>
+<td>TroponinT</td>
+<td>863</td>
+<td>3137</td>
+<td>0.2109</td>
+<td>0.1186</td>
+<td>0.0923</td>
+</tr>
+<tr>
+<th>2</th>
+<td>AST</td>
+<td>1725</td>
+<td>2275</td>
+<td>0.1907</td>
+<td>0.0989</td>
+<td>0.0918</td>
+</tr>
+<tr>
+<th>1</th>
+<td>ALT</td>
+<td>1721</td>
+<td>2279</td>
+<td>0.1906</td>
+<td>0.0992</td>
+<td>0.0914</td>
+</tr>
+<tr>
+<th>6</th>
+<td>Bilirubin</td>
+<td>1718</td>
+<td>2282</td>
+<td>0.1903</td>
+<td>0.0995</td>
+<td>0.0909</td>
+</tr>
+<tr>
+<th>0</th>
+<td>ALP</td>
+<td>1690</td>
+<td>2310</td>
+<td>0.1905</td>
+<td>0.1004</td>
+<td>0.0901</td>
+</tr>
+<tr>
+<th>38</th>
+<td>WBC</td>
+<td>3927</td>
+<td>73</td>
+<td>0.1401</td>
+<td>0.0548</td>
+<td>0.0853</td>
+</tr>
+<tr>
+<th>20</th>
+<td>Lactate</td>
+<td>2183</td>
+<td>1817</td>
+<td>0.1764</td>
+<td>0.0930</td>
+<td>0.0834</td>
+</tr>
+<tr>
+<th>4</th>
+<td>Albumin</td>
+<td>1615</td>
+<td>2385</td>
+<td>0.1876</td>
+<td>0.1052</td>
+<td>0.0824</td>
+</tr>
+<tr>
+<th>31</th>
+<td>RespRate</td>
+<td>1101</td>
+<td>2899</td>
+<td>0.0790</td>
+<td>0.1611</td>
+<td>-0.0821</td>
+</tr>
+<tr>
+<th>30</th>
+<td>Platelets</td>
+<td>3932</td>
+<td>68</td>
+<td>0.1399</td>
+<td>0.0588</td>
+<td>0.0811</td>
+</tr>
+<tr>
+<th>13</th>
+<td>Glucose</td>
+<td>3887</td>
+<td>113</td>
+<td>0.1407</td>
+<td>0.0619</td>
+<td>0.0788</td>
+</tr>
+<tr>
+<th>10</th>
+<td>FiO2</td>
+<td>2717</td>
+<td>1283</td>
+<td>0.1634</td>
+<td>0.0857</td>
+<td>0.0777</td>
+</tr>
+<tr>
+<th>5</th>
+<td>BUN</td>
+<td>3936</td>
+<td>64</td>
+<td>0.1397</td>
+<td>0.0625</td>
+<td>0.0772</td>
+</tr>
+<tr>
+<th>8</th>
+<td>Creatinine</td>
+<td>3936</td>
+<td>64</td>
+<td>0.1397</td>
+<td>0.0625</td>
+<td>0.0772</td>
+</tr>
+<tr>
+<th>15</th>
+<td>HCT</td>
+<td>3936</td>
+<td>64</td>
+<td>0.1397</td>
+<td>0.0625</td>
+<td>0.0772</td>
+</tr>
+<tr>
+<th>28</th>
+<td>PaCO2</td>
+<td>3023</td>
+<td>977</td>
+<td>0.1568</td>
+<td>0.0819</td>
+<td>0.0749</td>
+</tr>
+<tr>
+<th>14</th>
+<td>HCO3</td>
+<td>3924</td>
+<td>76</td>
+<td>0.1399</td>
+<td>0.0658</td>
+<td>0.0741</td>
+</tr>
+<tr>
+<th>29</th>
+<td>PaO2</td>
+<td>3023</td>
+<td>977</td>
+<td>0.1565</td>
+<td>0.0829</td>
+<td>0.0736</td>
+</tr>
+<tr>
+<th>40</th>
+<td>pH</td>
+<td>3040</td>
+<td>960</td>
+<td>0.1559</td>
+<td>0.0833</td>
+<td>0.0726</td>
+</tr>
+<tr>
+<th>23</th>
+<td>Mg</td>
+<td>3897</td>
+<td>103</td>
+<td>0.1404</td>
+<td>0.0680</td>
+<td>0.0724</td>
+</tr>
+<tr>
+<th>19</th>
+<td>K</td>
+<td>3904</td>
+<td>96</td>
+<td>0.1401</td>
+<td>0.0729</td>
+<td>0.0672</td>
+</tr>
+<tr>
+<th>11</th>
+<td>GCS</td>
+<td>3936</td>
+<td>64</td>
+<td>0.1395</td>
+<td>0.0781</td>
+<td>0.0614</td>
+</tr>
+<tr>
+<th>34</th>
+<td>Temp</td>
+<td>3936</td>
+<td>64</td>
+<td>0.1395</td>
+<td>0.0781</td>
+<td>0.0614</td>
+</tr>
+<tr>
+<th>16</th>
+<td>HR</td>
+<td>3937</td>
+<td>63</td>
+<td>0.1394</td>
+<td>0.0794</td>
+<td>0.0601</td>
+</tr>
+<tr>
+<th>27</th>
+<td>Na</td>
+<td>3925</td>
+<td>75</td>
+<td>0.1396</td>
+<td>0.0800</td>
+<td>0.0596</td>
+</tr>
+<tr>
+<th>39</th>
+<td>Weight</td>
+<td>3704</td>
+<td>296</td>
+<td>0.1428</td>
+<td>0.0845</td>
+<td>0.0584</td>
+</tr>
+<tr>
+<th>22</th>
+<td>MechVent</td>
+<td>2529</td>
+<td>1471</td>
+<td>0.1562</td>
+<td>0.1081</td>
+<td>0.0481</td>
+</tr>
+<tr>
+<th>17</th>
+<td>Height</td>
+<td>2106</td>
+<td>1894</td>
+<td>0.1239</td>
+<td>0.1547</td>
+<td>-0.0308</td>
+</tr>
+<tr>
+<th>9</th>
+<td>DiasABP</td>
+<td>2799</td>
+<td>1201</td>
+<td>0.1461</td>
+<td>0.1207</td>
+<td>0.0254</td>
+</tr>
+<tr>
+<th>33</th>
+<td>SysABP</td>
+<td>2799</td>
+<td>1201</td>
+<td>0.1461</td>
+<td>0.1207</td>
+<td>0.0254</td>
+</tr>
+<tr>
+<th>21</th>
+<td>MAP</td>
+<td>2792</td>
+<td>1208</td>
+<td>0.1454</td>
+<td>0.1225</td>
+<td>0.0229</td>
+</tr>
+<tr>
+<th>32</th>
+<td>SaO2</td>
+<td>1792</td>
+<td>2208</td>
+<td>0.1479</td>
+<td>0.1309</td>
+<td>0.0170</td>
+</tr>
+<tr>
+<th>7</th>
+<td>Cholesterol</td>
+<td>305</td>
+<td>3695</td>
+<td>0.1508</td>
+<td>0.1375</td>
+<td>0.0133</td>
+</tr>
+<tr>
+<th>25</th>
+<td>NIMAP</td>
+<td>3481</td>
+<td>519</td>
+<td>0.1399</td>
+<td>0.1291</td>
+<td>0.0108</td>
+</tr>
+<tr>
+<th>24</th>
+<td>NIDiasABP</td>
+<td>3483</td>
+<td>517</td>
+<td>0.1398</td>
+<td>0.1296</td>
+<td>0.0102</td>
+</tr>
+<tr>
+<th>26</th>
+<td>NISysABP</td>
+<td>3493</td>
+<td>507</td>
+<td>0.1397</td>
+<td>0.1302</td>
+<td>0.0095</td>
+</tr>
+<tr>
+<th>37</th>
+<td>Urine</td>
+<td>3883</td>
+<td>117</td>
+<td>0.1383</td>
+<td>0.1453</td>
+<td>-0.0070</td>
+</tr>
+<tr>
+<th>3</th>
+<td>Age</td>
+<td>4000</td>
+<td>0</td>
+<td>0.1385</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr>
+<th>18</th>
+<td>ICUType</td>
+<td>4000</td>
+<td>0</td>
+<td>0.1385</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a037f225">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Challenge-2012-assessment-criteria">Challenge 2012 assessment criteria<a class="anchor-link" href="#Challenge-2012-assessment-criteria">¶</a></h2><p>With death as the positive outcome, <code>TP/(TP+FN)</code> is sensitivity/recall: the fraction of actual deaths identified. <code>TP/(TP+FP)</code> is precision/positive predictive value: the fraction of predicted deaths that are correct. The Challenge criterion <code>min(TP/(TP+FN), TP/(TP+FP))</code> rewards maintaining both because the weaker metric determines the score.</p>
+<p>The Hosmer-Lemeshow statistic concerns calibration: agreement between predicted risk and observed outcomes across risk groups. The Challenge additionally normalized this statistic by the spread of predicted risks. No predictive model is built and neither metric is calculated here. Source: <a href="https://physionet.org/content/challenge-2012/1.0.0/">Challenge assessment criteria</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67b9fc75">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="AI-use-statement">AI-use statement<a class="anchor-link" href="#AI-use-statement">¶</a></h2><p><em>Draft for my review:</em> I used ChatGPT and Codex to understand assignment requirements, help with Git/Pixi/project setup, draft and revise Python code, debug, learn missing-data concepts, suggest visualizations, and explain programming and statistics. My review process included running earlier code incrementally, checking 4,000 patient records, RecordIDs and long-table dimensions, verifying the 0-48-hour conversion, manually inspecting raw patient files and intermediate outputs, and reviewing generated code. I plan to run the rebuilt cells myself and test the final notebook with Pixi; the rebuilt sections have not yet been executed.</p>
+<p>Benefits included faster debugging, useful explanations, and validation suggestions. Generated code can run despite incorrect assumptions, and AI may misunderstand clinical variable semantics. I remain responsible for manually validating the code and analysis and for confirming this disclosure matches my actual use of both tools.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ca37143c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Final-validation">Final validation<a class="anchor-link" href="#Final-validation">¶</a></h2><p>Run this only after manually reviewing the preceding cells. Check required files and the saved wide table using only its identifier column, without reloading the full long CSV. This does not establish that every interpretation is correct. After manual review, the separate command <code>pixi run --locked checkpoint1</code> can be used to test the complete notebook and regenerate the HTML report.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2a4e5202">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">required_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'set-a_long.csv'</span><span class="p">,</span> <span class="s1">'set-a_wide.csv'</span><span class="p">,</span>
+                    <span class="s1">'hourly_measurement_proportion.csv'</span><span class="p">,</span> <span class="s1">'temporal_missingness.png'</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">required_outputs</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">(),</span> <span class="sa">f</span><span class="s1">'Missing output: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s1">'</span>
+<span class="n">saved_ids</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'set-a_wide.csv'</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'RecordID'</span><span class="p">:</span> <span class="s1">'int32'</span><span class="p">})</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">saved_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4000</span>
+<span class="k">assert</span> <span class="n">saved_ids</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4000</span> <span class="ow">and</span> <span class="n">saved_ids</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span>
+<span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">saved_ids</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">])</span> <span class="o">==</span> <span class="n">expected_ids</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">set_a_wide</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4000</span> <span class="ow">and</span> <span class="n">set_a_wide</span><span class="p">[</span><span class="s1">'RecordID'</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span>
+<span class="n">saved_hourly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">OUTPUT</span> <span class="o">/</span> <span class="s1">'hourly_measurement_proportion.csv'</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">saved_hourly</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="mi">49</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">saved_hourly</span><span class="o">.</span><span class="n">ge</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">and</span> <span class="n">saved_hourly</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Required files exist; wide-table identifiers and hourly proportions passed validation.'</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">saved_ids</span><span class="p">,</span> <span class="n">saved_hourly</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">'all'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Required files exist; wide-table identifiers and hourly proportions passed validation.
+</pre>
+</div>
 </div>
 </div>
 </div>
